@@ -19,6 +19,6 @@ if (process.env.NODE_ENV !== 'test'){
     
 
 if (process.env.NODE_ENV !== 'test') {
-    const PORT = process.env.PORT || 5501;
+    const PORT = process.env.PORT || 5500;
     app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 }
