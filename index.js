@@ -8,17 +8,36 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+import {require} from './node_modules'
 
-if (process.env.NODE_ENV !== 'test'){
-    const swaggerFile = require('./swagger/swagger_output.json');
-    app.get('/', (req, res) => { /*swagger.ignore = true */ res.redirect('/doc'); });
-    app.use('/doc', authDocProducao, swaggerUi.serve, swaggerUi.setup(swaggerFile, swaggerOptions));
-    }
-    
-    routes(app);
-    
+require("dotenv").config();
+const express = require('express')
+const mongoose = require("mongoose")
+const cors = require("cors")
+const path = require("path")
+app.use(express.json());
+const mongodb = require('mongodb')
+const routes = require("./src/routes") 
+const url = "mongodb+srv://Denildo1:123456@cluster0.zrcquc2.mongodb.net/";
+connectTodatabase()
+const connectTodatabase = require('./database')
 
-if (process.env.NODE_ENV !== 'test') {
-    const PORT = process.env.PORT || 5501;
-    app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
-}
+mongoose.connect("mongodb+srv://Denildo1:123456@cluster0.zrcquc2.mongodb.net/",{
+    useNewUrlParser: true,
+    useUnifiedToplogy: true,
+})
+
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("conectado ao banco de dados!"));
+app.get('/', function(req, res){
+    res.json({message:'projeto 5 DNC'})
+});
+const app = express();
+const port = 5173;
+
+app.use({routes});
+
+app.listen(port,() =>{
+console.log(`Backend starded at  httm://localhost:${port}`);
+});
