@@ -18,11 +18,11 @@ const path = require("path")
 app.use(express.json());
 const mongodb = require('mongodb')
 const routes = require("./src/routes") 
-const url = "mongodb+srv://Denildo1:123456@cluster0.zrcquc2.mongodb.net/";
+const url = "/";
 connectTodatabase()
 const connectTodatabase = require('./database')
 
-mongoose.connect("mongodb+srv://Denildo1:123456@cluster0.zrcquc2.mongodb.net/",{
+mongoose.connect("mongodb+srv://philosophia469:De0510426019411945@cluster0.5rojuhi.mongodb.net/?retryWrites=true&w=majority/",{
     useNewUrlParser: true,
     useUnifiedToplogy: true,
 })
